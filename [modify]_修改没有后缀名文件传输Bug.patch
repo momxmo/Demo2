@@ -1,0 +1,28 @@
+Index: app/src/main/java/com/ckt/io/wifidirect/p2p/WifiP2pHelper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/ckt/io/wifidirect/p2p/WifiP2pHelper.java	(revision a53f42c00f0c0c7d619cac9ca4b538ae35aa20c0)
++++ app/src/main/java/com/ckt/io/wifidirect/p2p/WifiP2pHelper.java	(revision )
+@@ -317,10 +317,16 @@
+                         f = new File(activity.getReceivedFileDirPath(),
+                                 FileTypeUtils.getTypeString(activity, name) + File.separator + name);
+                     } else {
+-                        int index = name.indexOf(".");
++                        if (name.contains(".")) {
++                            int index = name.lastIndexOf(".");
+-                        String name2 = name.substring(0, index) + "(" + i + ")" + name.substring(index);
+-                        f = new File(activity.getReceivedFileDirPath(),
+-                                FileTypeUtils.getTypeString(activity, name) + File.separator + name2);
++                            String name2 = name.substring(0, index) + "(" + i + ")" + name.substring(index);
++                            f = new File(activity.getReceivedFileDirPath(),
++                                    FileTypeUtils.getTypeString(activity, name) + File.separator + name2);
++                        } else {
++                            String name2 = name+"_"+i;
++                            f = new File(activity.getReceivedFileDirPath(),
++                                    FileTypeUtils.getTypeString(activity, name) + File.separator + name2);
++                        }
+                     }
+                     i++;
+                     if (!f.exists()) {
