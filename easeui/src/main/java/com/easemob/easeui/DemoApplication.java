@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.easemob.chat.EMChat;
 
+import dalvik.system.DexClassLoader;
+import dalvik.system.PathClassLoader;
+
 public class DemoApplication extends Application {
 
     public static boolean permission_record_audio = false; //录音权限
@@ -17,6 +20,9 @@ public class DemoApplication extends Application {
         EMChat.getInstance().setAppkey("momxmo#p2p");
         EMChat.getInstance().init(this);
         EMChat.getInstance().setDebugMode(true);//在做打包混淆时，要关闭debug模式，避免消耗不必要的资源
+
+        DexClassLoader loa;
+        PathClassLoader pathClassLoader;
     }
 
 }
